@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Irregular Verbs Quiz </title>
+  <title>Irregular Verbs Quiz • Student Lesson</title>
   <meta name="description" content="Interactive irregular verbs quiz with Google Sheets submission, teacher-mode scoring, sounds, and confetti." />
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -86,7 +86,10 @@
             <div id="mcqB" class="q-list"></div>
           </div>
         </section>
- <div class="section__title">
+
+        <!-- PART 2 -->
+        <section class="section" aria-label="Part 2 Fill in the blanks">
+          <div class="section__title">
             <h3>Part 2 — Fill in the missing forms</h3>
             <span class="pill">Auto-graded</span>
           </div>
@@ -105,7 +108,6 @@
           </div>
 
           <div id="blanks" class="blank-list"></div>
-         
         </section>
 
         <!-- PART 3 -->
@@ -119,7 +121,6 @@
           <div id="sentences" class="sentence-list"></div>
         </section>
 
-
         <!-- Actions -->
         <section class="actions" aria-label="Actions">
           <div class="actions__left">
@@ -131,9 +132,8 @@
               Check Score (Teacher Mode)
             </button>
           </div>
-
           <div class="actions__right">
-            <button class="btn btn--ghost" id="printBtn" type="button">Print</button>
+            <button class="btn btn--ghost" id="printBtn" type="button"></button>
             <button class="btn btn--danger" id="resetBtn" type="button">Reset</button>
           </div>
         </section>
@@ -146,12 +146,14 @@
   <div class="overlay__card">
     <button id="closeOverlayBtn" class="overlay__close" type="button" aria-label="Close">✕</button>
 
+  
     <img
       id="submitGif"
       class="overlay__gif"
       src="clapping.gif"
       scr="clappinga.gif"
       alt="Submitted successfully"
+    />
     />
 
     <h3 class="overlay__title">Submitted! ✅</h3>
@@ -161,7 +163,8 @@
   </div>
 </div>
 
- <!-- Score Card -->
+
+      <!-- Score Card -->
       <aside class="card card--sticky" aria-label="Score panel">
         <div class="card__head">
           <h2>Score Card</h2>
@@ -193,10 +196,3 @@
   <script src="./app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
