@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Irregular Verbs Quiz • Student Lesson</title>
+  <meta name="description" content="Interactive irregular verbs quiz with Google Sheets submission, teacher-mode scoring, sounds, and confetti." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Confetti canvas -->
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <a class="skip-link" href="#main">Skip to quiz</a>
+
+  <header class="top">
+    <div class="top__inner">
+      <div class="brand">
+        <div class="brand__icon" aria-hidden="true">★</div>
+        <div>
+          <h1>Irregular Verbs Quiz</h1>
+          <p class="muted">Parts 1–3 • Interactive • Mobile-friendly • Submit to Google Sheets</p>
+        </div>
+      </div>
+
+      <section class="student-card" aria-label="Student Information">
+        <div class="student-card__header">
+          <h2>Student Info</h2>
+          <div class="progress">
+            <div class="progress__meta" id="progressMeta">Progress: 0/43</div>
+            <div class="progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="43" aria-valuenow="0" aria-label="Quiz progress">
+              <div class="progress__fill" id="progressFill"></div>
+            </div>
+            <div class="progress__chips" aria-label="Section progress">
+              <span class="chip" id="chipMcq">MCQ: 0/20</span>
+              <span class="chip" id="chipBlanks">Blanks: 0/15</span>
+              <span class="chip" id="chipSent">Sentences: 0/8</span>
+              <span class="chip chip--timer" id="chipTimer" aria-live="polite">Time: 00:00</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="student-form" id="studentForm" autocomplete="on">
+          <div class="field">
+            <label for="studentName">Student name <span class="req">*</span></label>
+            <input id="studentName" name="studentName" type="text" inputmode="text" required placeholder="e.g., Sara Ahmed" />
+            <p class="field__error" id="errName" role="alert" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="studentClass">Class <span class="req">*</span></label>
+            <input id="studentClass" name="studentClass" type="text" inputmode="text" required placeholder="e.g., Grade 7B / ESL-2" />
+            <p class="field__error" id="errClass" role="alert" aria-live="polite"></p>
+          </div>
+
+          <div class="student-form__note muted" id="autosaveNote">
+            ✔️ Auto-save is ON (this browser only).
+          </div>
+        </form>
+      </section>
+    </div>
+  </header>
+
+  <main id="main" class="main" tabindex="-1">
+    <div class="layout">
+      <section class="card" aria-label="Quiz content">
+        <div class="card__head">
+          <h2>Quiz</h2>
+          <p class="muted">Answer all parts. Then tap <b>Submit Answers</b>. After submitting, <b>Check Score</b> will appear.</p>
+        </div>
+
+        <!-- PART 1 -->
+        <section class="section" aria-label="Part 1 Multiple Choice">
+          <div class="section__title">
+            <h3>Part 1 — MCQ</h3>
+            <span class="pill">Auto-graded</span>
+          </div>
+
+          <div class="subsection">
+            <h4>A) Choose the Past Simple (V2)</h4>
+            <div id="mcqA" class="q-list"></div>
+          </div>
+
+          <div class="subsection">
+            <h4>B) Choose the Past Participle (V3)</h4>
+            <div id="mcqB" class="q-list"></div>
+          </div>
+        </section>
+
+        <!-- PART 2 -->
+        <section class="section" aria-label="Part 2 Fill in the blanks">
+          <div class="section__title">
+            <h3>Part 2 — Fill in the missing forms</h3>
+            <span class="pill">Auto-graded</span>
+          </div>
+
+          <p class="muted">
+            You can <b>type</b> the answer or use the <b>word bank</b>.
+            Drag a word into a blank (swoosh sound), or tap a word then tap a blank to insert.
+          </p>
+
+          <div class="bank" aria-label="Word bank">
+            <div class="bank__top">
+              <div class="bank__label">Word Bank</div>
+              <div class="bank__hint muted" id="bankHint">Tip: Drag or tap a word to fill blanks.</div>
+            </div>
+            <div class="bank__chips" id="wordBank"></div>
+          </div>
+
+          <div id="blanks" class="blank-list"></div>
+        </section>
+
+        <!-- PART 3 -->
+        <section class="section" aria-label="Part 3 Sentence writing">
+          <div class="section__title">
+            <h3>Part 3 — Make your own sentence ✍️</h3>
+            <span class="pill pill--soft">Practice (not auto-graded)</span>
+          </div>
+
+          <p class="muted">Write 1 sentence using each verb (any tense you want).</p>
+          <div id="sentences" class="sentence-list"></div>
+        </section>
+
+        <!-- Actions -->
+        <section class="actions" aria-label="Actions">
+          <div class="actions__left">
+            <button class="btn btn--primary" id="submitBtn" type="button">
+              Submit Answers
+            </button>
+
+            <button class="btn btn--ghost is-hidden" id="checkBtn" type="button">
+              Check Score (Teacher Mode)
+            </button>
+          </div>
+
+          <div class="actions__right">
+            <button class="btn btn--ghost" id="printBtn" type="button">Print</button>
+            <button class="btn btn--danger" id="resetBtn" type="button">Reset</button>
+          </div>
+        </section>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+      
+<!-- Submit GIF Overlay -->
+<div id="submitOverlay" class="overlay is-hidden" role="dialog" aria-modal="true" aria-label="Submission message">
+  <div class="overlay__card">
+    <button id="closeOverlayBtn" class="overlay__close" type="button" aria-label="Close">✕</button>
+
+    <img
+      id="submitGif"
+      class="overlay__gif"
+      src="./assets/submitted.gif"
+      alt="Submitted successfully"
+    />
+
+    <h3 class="overlay__title">Submitted! ✅</h3>
+    <p class="overlay__text muted">Great job. You can now click <b>Check Score</b>.</p>
+
+    <button id="overlayOkBtn" class="btn btn--primary" type="button">OK</button>
+  </div>
+</div>
+
+
+      <!-- Score Card -->
+      <aside class="card card--sticky" aria-label="Score panel">
+        <div class="card__head">
+          <h2>Score Card</h2>
+          <p class="muted">Appears after you check the score.</p>
+        </div>
+
+        <div class="score" id="scoreCard">
+          <div class="score__big" id="scoreBig">—%</div>
+          <div class="score__row">
+            <div class="score__pill" id="scoreP1">Part 1: —/20</div>
+            <div class="score__pill" id="scoreP2">Part 2: —/15</div>
+          </div>
+          <div class="score__msg" id="scoreMsg">Submit first to unlock score checking.</div>
+
+          <div class="muted score__note">
+            ✔️ Correct answers will be shown for any wrong ones after scoring.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner muted">
+      Built for GitHub Pages • Light theme • Accessible touch targets • Keyboard-friendly where possible
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
