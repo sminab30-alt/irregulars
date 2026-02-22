@@ -86,21 +86,38 @@
             <div id="mcqB" class="q-list"></div>
           </div>
         </section>
-
-   <!-- PART 2 -->
-        <section class="section" aria-label="Part 2 Fill in the blanks">
-          <div class="section__title">
+ <div class="section__title">
             <h3>Part 2 — Fill in the missing forms</h3>
             <span class="pill">Auto-graded</span>
-         
+          </div>
+
+          <p class="muted">
+            You can <b>type</b> the answer or use the <b>word bank</b>.
+            Drag a word into a blank (swoosh sound), or tap a word then tap a blank to insert.
+          </p>
+
+          <div class="bank" aria-label="Word bank">
+            <div class="bank__top">
+              <div class="bank__label">Word Bank</div>
+              <div class="bank__hint muted" id="bankHint">Tip: Drag or tap a word to fill blanks.</div>
+            </div>
+            <div class="bank__chips" id="wordBank"></div>
+          </div>
 
           <div id="blanks" class="blank-list"></div>
-        </section>
-
          
         </section>
 
-     
+        <!-- PART 3 -->
+        <section class="section" aria-label="Part 3 Sentence writing">
+          <div class="section__title">
+            <h3>Part 3 — Make your own sentence ✍️</h3>
+            <span class="pill pill--soft">Practice (not auto-graded)</span>
+          </div>
+
+          <p class="muted">Write 1 sentence using each verb (any tense you want).</p>
+          <div id="sentences" class="sentence-list"></div>
+        </section>
 
 
         <!-- Actions -->
@@ -177,6 +194,7 @@
   <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
