@@ -4,8 +4,7 @@
 ========================================================= */
 
 /** 🔧 Paste your Google Apps Script Web App URL here */
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhRkw16MN--G8-Pz5Qxcuuq23sO0AZuo64a77H27vyhwhXhx56MjKJYEO4fyB7ptFwBw/exec";
-
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzLilf9B--HCzfWQgDjl0Xzl5MQEgnHhOkptvwNCZGEfemBaI3tbAVTE4L06cyjIs9d/exec";
 /** LocalStorage key */
 const STORAGE_KEY = "irregular_verbs_lesson_v3";
 
@@ -1023,4 +1022,5 @@ function launchConfetti(){
 
   cancelAnimationFrame(raf);
   tick();
+
 }
