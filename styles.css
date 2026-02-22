@@ -500,10 +500,10 @@ h1{
 
 .btn{
   min-height: var(--tap);
-  padding: 10px 14px;
+  padding: 10px 30px;
   border-radius: 16px;
   border: 1px solid var(--line);
-  background:#fff;
+  background:#32a68b;
   cursor:pointer;
   font-weight: 900;
   letter-spacing: .1px;
@@ -511,23 +511,28 @@ h1{
 }
 .btn:hover{
   transform: translateY(-1px);
-  border-color: rgba(58,111,247,.35);
-  background:#f7faff;
+  border-color: rgba(83, 247, 58, 0.35);
+  background:#c809a8;
 }
 .btn:focus-visible{
   outline:none;
   box-shadow: var(--focus);
 }
 .btn--primary{
-  border-color: rgba(58,111,247,.40);
-  background: linear-gradient(135deg, rgba(58,111,247,.18), rgba(51,184,255,.14));
+border: 1px solid rgba(58,111,247,.35);
+  background: linear-gradient(135deg, #3a6ff7, #7c3aed);
+  color: #ffffff;
+
+  box-shadow: 0 12px 24px rgba(124,58,237,.25);
+  transition: all .2s ease;
 }
 .btn--primary:hover{
-  border-color: rgba(58,111,247,.55);
-  background: linear-gradient(135deg, rgba(58,111,247,.24), rgba(51,184,255,.18));
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(237, 58, 177, 0.35);
 }
 .btn--ghost{
-  background:#fff;
+  color: #ffffff;
+  background:#c13535db;
 }
 .btn--danger:hover{
   border-color: rgba(229,71,99,.45);
@@ -676,4 +681,5 @@ h1{
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   .overlay__gif{ image-rendering: auto; }
+
 }
