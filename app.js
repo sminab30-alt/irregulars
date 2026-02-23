@@ -12,14 +12,14 @@ const STORAGE_KEY = "irregular_verbs_lesson_v3";
 const MCQ = [
   // Part 1A: Past Simple (V2)
   { id:"mcq-see",   section:"A", prompt:"see",   options:["saw","seen","see"], correct:"saw" },
-  { id:"mcq-take",  section:"A", prompt:"take",  options:["took","taken","take"], correct:"took" },
+  { id:"mcq-take",  section:"A", prompt:"take",  options:["take","taken","took"], correct:"took" },
   { id:"mcq-make",  section:"A", prompt:"make",  options:["made","make","making"], correct:"made" },
-  { id:"mcq-give",  section:"A", prompt:"give",  options:["gave","given","give"], correct:"gave" },
+  { id:"mcq-give",  section:"A", prompt:"give",  options:["give","gave","given"], correct:"gave" },
   { id:"mcq-come",  section:"A", prompt:"come",  options:["came","come","coming"], correct:"came" },
-  { id:"mcq-find",  section:"A", prompt:"find",  options:["found","find","finding"], correct:"found" },
+  { id:"mcq-find",  section:"A", prompt:"find",  options:["finding","find","found"], correct:"found" },
   { id:"mcq-tell",  section:"A", prompt:"tell",  options:["told","tell","telling"], correct:"told" },
-  { id:"mcq-think", section:"A", prompt:"think", options:["thought","think","thinking"], correct:"thought" },
-  { id:"mcq-bring", section:"A", prompt:"bring", options:["brought","bring","bringing"], correct:"brought" },
+  { id:"mcq-think", section:"A", prompt:"think", options:["thought","think","think"], correct:"thought" },
+  { id:"mcq-bring", section:"A", prompt:"bring", options:["bring","brought","bringing"], correct:"brought" },
 
   // Part 1B: Past Participle (V3)
   { id:"mcq-be",     section:"B", prompt:"be",     options:["was/were","been","be"], correct:"been" },
@@ -1024,3 +1024,4 @@ function launchConfetti(){
   tick();
 
 }
+
